@@ -1,0 +1,14 @@
+# Never commit real data or generated artifacts
+data/*
+!data/.gitkeep
+outputs/
+
+# Python / Jupyter cruft
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

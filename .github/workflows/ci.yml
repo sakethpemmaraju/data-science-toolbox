@@ -1,0 +1,43 @@
+name: notebooks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  execute-notebooks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt nbconvert ipykernel
+
+      # Execute every notebook headlessly, in numeric order so notebooks that
+      # read earlier outputs (e.g. 16 reads 04's predictions) find them.
+      - name: Execute all notebooks
+        run: |
+          set -e
+          for nb in $(ls *.ipynb | sort); do
+            echo "=== $nb ==="
+            jupyter nbconvert --to notebook --execute \
+              --output /tmp/executed_ci.ipynb \
+              --ExecutePreprocessor.timeout=600 "$nb"
+          done
+          echo "All notebooks executed successfully."
+
+      - name: Smoke-test batch scorer
+        run: |
+          python -c "
+          from utils import make_sample_lending_data
+          make_sample_lending_data(n=100).to_csv('data/ci_test.csv', index=False)"
+          python score_batch.py --model outputs/xgboost.joblib \
+            --input data/ci_test.csv --output outputs/ci_scored.csv
