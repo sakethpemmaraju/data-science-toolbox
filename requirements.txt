@@ -1,5 +1,7 @@
 # Core (required by all notebooks)
-pandas>=2.0
+# pandas pinned below 3.0: the pandas-3 default string dtype changes
+# object-dtype behavior; the notebooks are written for the pandas 2.x API.
+pandas>=2.0,<3.0
 numpy>=1.24
 matplotlib>=3.7
 seaborn>=0.12
