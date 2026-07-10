@@ -173,8 +173,9 @@ columns in = scores out. `utils.py` exposes the same loaders/metrics (`load_data
 pip install -r requirements.txt
 ```
 Note the pin `xgboost==2.0.3` — newer wheels need a newer OpenMP runtime than
-Anaconda ships on macOS. `lightgbm` is optional (extra bench model in 08); the
-notebooks skip it gracefully when absent.
+Anaconda ships on macOS. `catboost` is optional (extra bench model in 08, strongest
+on high-cardinality categoricals); notebook 08 picks up whichever boosters are
+installed and skips the rest gracefully.
 
 ```
 ml-modeling-notebooks/

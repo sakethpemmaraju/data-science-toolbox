@@ -16,9 +16,10 @@ openpyxl>=3.1
 # Pinned: newer xgboost wheels require a newer libomp than Anaconda ships on macOS.
 xgboost==2.0.3
 shap>=0.44
+lightgbm>=4.0
 
 # Optional
-# lightgbm>=4.0        # extra model in notebook 08
+# catboost             # extra bench model in notebook 08 (high-cardinality categoricals)
 # psycopg2-binary      # PostgreSQL access
 # pymysql              # MySQL access
 # pyodbc               # SQL Server access
