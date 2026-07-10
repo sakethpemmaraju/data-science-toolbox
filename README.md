@@ -26,6 +26,12 @@ lending data. To use your own data, edit the single cell marked
 `INPUT — EDIT THIS CELL` (CSV / Excel / SQL database) and the `CONFIG` cell
 (target column, columns to drop), then Run All again. Every result lands in `outputs/`.
 
+For a real analysis, stamp a dedicated workspace so this template stays clean:
+
+```bash
+python new_project.py ~/work/my-analysis
+```
+
 ## Contents
 
 | Stage | Notebooks |

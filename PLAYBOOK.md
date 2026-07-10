@@ -72,7 +72,24 @@ Chain them through files: 05 writes `outputs/cleaned_data.csv`, 07 writes
 
 ## 3. How to execute any notebook
 
-1. **Start Jupyter in this folder** (paths are relative):
+### Starting a real analysis? Stamp a workspace first
+
+The toolbox folder is a **template** — keep it pristine. For any real analysis,
+create a dedicated copy and work there:
+
+```bash
+python new_project.py ~/work/q3-collections-model
+```
+
+This copies all notebooks + scripts into the new folder, creates `data/` and
+`outputs/`, and adds a `PROJECT_NOTES.md` stub for your decisions log. Edit those
+copies freely — point them at real data, delete cells, rename files. The template
+(and its GitHub repo) stays clean, and the copied `.gitignore` protects your data
+if you `git init` the analysis folder.
+
+### Running the notebooks
+
+1. **Start Jupyter in the folder** (paths are relative):
    ```bash
    cd ml-modeling-notebooks
    jupyter lab          # or open the folder in VS Code
@@ -183,6 +200,7 @@ ml-modeling-notebooks/
 ├── outputs/           <- everything produced lands here
 ├── 00–16 *.ipynb      <- the notebooks
 ├── score_batch.py     <- CLI batch scorer
+├── new_project.py     <- stamps a fresh analysis workspace from this template
 ├── utils.py           <- shared loaders + metrics for your own scripts
 ├── requirements.txt
 └── PLAYBOOK.md        <- this file
